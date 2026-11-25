@@ -2734,6 +2734,10 @@ export default withEnglishFallback({
     pie: "Torta",
     noNumericData: "Nessun dato numerico disponibile per il grafico",
     showLabels: "Mostra valori",
+    xAxisType: "Tipo asse X",
+    xAxisAuto: "Automatico",
+    xAxisCategory: "Categoria",
+    xAxisTime: "Tempo",
   },
   grid: {
     setTablePageSizeDefault: "Imposta come predefinito per questa tabella",

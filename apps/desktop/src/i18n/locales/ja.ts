@@ -3009,6 +3009,10 @@ export default withEnglishFallback({
     pie: "円",
     noNumericData: "グラフ化できる数値データがありません",
     showLabels: "値を表示",
+    xAxisType: "X軸の種類",
+    xAxisAuto: "自動",
+    xAxisCategory: "カテゴリ",
+    xAxisTime: "時間",
   },
   grid: {
     setTablePageSizeDefault: "このテーブルの既定値に設定",
