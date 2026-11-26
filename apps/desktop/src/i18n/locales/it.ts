@@ -2738,6 +2738,11 @@ export default withEnglishFallback({
     xAxisAuto: "Automatico",
     xAxisCategory: "Categoria",
     xAxisTime: "Tempo",
+    settings: "Impostazioni",
+    yAxisType: "Tipo asse Y",
+    yAxisValue: "Lineare",
+    yAxisLog: "Logaritmico",
+    smooth: "Curva smussata",
   },
   grid: {
     setTablePageSizeDefault: "Imposta come predefinito per questa tabella",
