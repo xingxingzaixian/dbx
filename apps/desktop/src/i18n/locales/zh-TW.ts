@@ -2725,6 +2725,7 @@ export default withEnglishFallback({
     yAxisValue: "數值",
     yAxisLog: "對數",
     smooth: "平滑曲線",
+    showSymbol: "顯示資料點",
   },
   grid: {
     setTablePageSizeDefault: "設為此資料表的預設值",

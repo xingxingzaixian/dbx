@@ -82,10 +82,15 @@ export interface QueryChartOptionConfig {
   yAxisType?: YAxisType;
   /** Explicit user choice. When omitted, fall back to the safe axis-based default. */
   smooth?: boolean;
+  /**
+   * Draw a marker on every line point. Off by default: a series of any length
+   * otherwise renders as a chain of circles sitting on top of the line.
+   */
+  showSymbol?: boolean;
 }
 
 export function buildQueryChartOption(result: QueryResult, config: QueryChartOptionConfig) {
-  const { chartType, xColumnIndex, yColumnIndexes, showLabels = false, isDark = false, xAxisType = "auto", yAxisType = "value", smooth: smoothOverride } = config;
+  const { chartType, xColumnIndex, yColumnIndexes, showLabels = false, isDark = false, xAxisType = "auto", yAxisType = "value", smooth: smoothOverride, showSymbol = false } = config;
   if (xColumnIndex < 0 || yColumnIndexes.length === 0) return null;
 
   const xData = result.rows.map((row) => String(row[xColumnIndex] ?? ""));
@@ -153,6 +158,8 @@ export function buildQueryChartOption(result: QueryResult, config: QueryChartOpt
       // and the value changes sharply, making the line loop back on itself.
       // The user can explicitly override this from the settings dialog.
       smooth: smoothOverride ?? (chartType === "line" && !timestamps),
+      // Markers are opt-in: at any real series length they cover the line.
+      ...(chartType === "line" ? { showSymbol } : {}),
       label: {
         show: showLabels,
         position: "top" as const,

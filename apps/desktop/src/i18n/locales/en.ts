@@ -3134,6 +3134,7 @@ export default {
     yAxisValue: "Linear",
     yAxisLog: "Logarithmic",
     smooth: "Smooth Line",
+    showSymbol: "Show data points",
   },
   grid: {
     setTablePageSizeDefault: "Set default for this table",

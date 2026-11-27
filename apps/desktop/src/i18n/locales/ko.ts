@@ -2749,6 +2749,7 @@ export default withEnglishFallback({
     yAxisValue: "선형",
     yAxisLog: "로그",
     smooth: "부드러운 선",
+    showSymbol: "데이터 포인트 표시",
   },
   grid: {
     setTablePageSizeDefault: "이 테이블의 기본값으로 설정",

@@ -2839,6 +2839,7 @@ export default withEnglishFallback({
     yAxisValue: "Линейная",
     yAxisLog: "Логарифмическая",
     smooth: "Сглаживание",
+    showSymbol: "Показывать точки данных",
   },
   grid: {
     setTablePageSizeDefault: "Сохранить значение для этой таблицы",

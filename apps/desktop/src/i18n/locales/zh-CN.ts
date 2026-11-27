@@ -3062,6 +3062,7 @@ export default withEnglishFallback({
     yAxisValue: "数值",
     yAxisLog: "对数",
     smooth: "平滑曲线",
+    showSymbol: "显示数据点",
   },
   grid: {
     setTablePageSizeDefault: "设为此表的默认值",

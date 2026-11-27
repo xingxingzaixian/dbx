@@ -3018,6 +3018,7 @@ export default withEnglishFallback({
     yAxisValue: "線形",
     yAxisLog: "対数",
     smooth: "平滑な線",
+    showSymbol: "データポイントを表示",
   },
   grid: {
     setTablePageSizeDefault: "このテーブルの既定値に設定",

@@ -255,6 +255,35 @@ describe("chartData", () => {
       expect(option?.series[0].smooth).toBe(true);
     });
 
+    it("hides point symbols on a line chart by default", () => {
+      const option = buildQueryChartOption(testResult, {
+        chartType: "line",
+        xColumnIndex: 0,
+        yColumnIndexes: [1],
+      });
+      expect(option?.series[0].showSymbol).toBe(false);
+    });
+
+    it("lets the user turn point symbols back on", () => {
+      const option = buildQueryChartOption(testResult, {
+        chartType: "line",
+        xColumnIndex: 0,
+        yColumnIndexes: [1],
+        showSymbol: true,
+      });
+      expect(option?.series[0].showSymbol).toBe(true);
+    });
+
+    it("does not add a symbol setting to bar series", () => {
+      const option = buildQueryChartOption(testResult, {
+        chartType: "bar",
+        xColumnIndex: 0,
+        yColumnIndexes: [1],
+        showSymbol: true,
+      });
+      expect(option?.series[0]).not.toHaveProperty("showSymbol");
+    });
+
     it("lets the user override smoothing on either axis type", () => {
       const timed = result(
         ["time", "value"],

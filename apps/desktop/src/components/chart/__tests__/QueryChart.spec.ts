@@ -129,9 +129,38 @@ describe("QueryChart", () => {
     await nextTick();
 
     expect(document.querySelector('[data-testid="query-chart-settings-dialog"]')).not.toBeNull();
-    for (const testId of ["query-chart-x-axis-type", "query-chart-y-axis-type", "query-chart-smooth", "query-chart-show-labels"]) {
+    for (const testId of ["query-chart-x-axis-type", "query-chart-y-axis-type", "query-chart-smooth", "query-chart-show-symbol", "query-chart-show-labels"]) {
       expect(document.querySelector(`[data-testid="${testId}"]`)).not.toBeNull();
     }
+  });
+
+  it("draws no point symbols by default and toggles them from the settings dialog", async () => {
+    app = createApp(QueryChart, { result: createQueryResult() });
+    app.mount(container!);
+    await nextTick();
+
+    const lineButton = Array.from(container!.querySelectorAll("button")).find((btn) => btn.textContent?.includes("chart.line")) as HTMLButtonElement;
+    lineButton.click();
+    await nextTick();
+    (container!.querySelector('[data-testid="query-chart-settings-btn"]') as HTMLButtonElement).click();
+    await nextTick();
+
+    const vchart = container!.querySelector("[data-chart-option]") as HTMLDivElement;
+    let option = JSON.parse(vchart.getAttribute("data-chart-option") || "{}");
+    expect(option.series[0].showSymbol).toBe(false);
+
+    const symbolSwitch = document.querySelector('[data-testid="query-chart-show-symbol"]') as HTMLElement;
+    symbolSwitch.click();
+    await nextTick();
+
+    option = JSON.parse(vchart.getAttribute("data-chart-option") || "{}");
+    expect(option.series[0].showSymbol).toBe(true);
+
+    symbolSwitch.click();
+    await nextTick();
+
+    option = JSON.parse(vchart.getAttribute("data-chart-option") || "{}");
+    expect(option.series[0].showSymbol).toBe(false);
   });
 
   it("applies the smoothing switch to the chart option", async () => {

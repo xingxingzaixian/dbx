@@ -2843,6 +2843,7 @@ export default withEnglishFallback({
     yAxisValue: "Lineal",
     yAxisLog: "Logarítmico",
     smooth: "Línea suave",
+    showSymbol: "Mostrar puntos de datos",
   },
   grid: {
     setTablePageSizeDefault: "Fijar valor predeterminado para esta tabla",

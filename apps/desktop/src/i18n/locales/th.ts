@@ -2989,6 +2989,7 @@ export default withEnglishFallback({
     yAxisValue: "เชิงเส้น",
     yAxisLog: "ลอการิทึม",
     smooth: "เส้นเรียบ",
+    showSymbol: "แสดงจุดข้อมูล",
   },
   grid: {
     setTablePageSizeDefault: "ตั้งค่าเริ่มต้นสำหรับตารางนี้",

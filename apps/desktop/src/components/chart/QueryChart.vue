@@ -26,10 +26,20 @@ const { t } = useI18n();
 const { isDark } = useTheme();
 
 const QUERY_CHART_SHOW_LABELS_KEY = "dbx-query-chart-show-labels";
+const QUERY_CHART_SHOW_SYMBOL_KEY = "dbx-query-chart-show-symbol";
 
 function readShowLabelsPreference(): boolean {
   try {
     return typeof localStorage !== "undefined" && localStorage.getItem(QUERY_CHART_SHOW_LABELS_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+// Point markers are off unless the user asks for them.
+function readShowSymbolPreference(): boolean {
+  try {
+    return typeof localStorage !== "undefined" && localStorage.getItem(QUERY_CHART_SHOW_SYMBOL_KEY) === "true";
   } catch {
     return false;
   }
@@ -45,10 +55,19 @@ const settingsOpen = ref(false);
 const xColumnIndex = ref(0);
 const yColumnIndexes = ref<number[]>([]);
 const showLabels = ref(readShowLabelsPreference());
+const showSymbol = ref(readShowSymbolPreference());
 
 watch(showLabels, (val) => {
   try {
     localStorage.setItem(QUERY_CHART_SHOW_LABELS_KEY, String(val));
+  } catch {
+    // ignore
+  }
+});
+
+watch(showSymbol, (val) => {
+  try {
+    localStorage.setItem(QUERY_CHART_SHOW_SYMBOL_KEY, String(val));
   } catch {
     // ignore
   }
@@ -135,6 +154,7 @@ const chartOption = computed(() => {
     xAxisType: xAxisType.value,
     yAxisType: yAxisType.value,
     smooth: smoothOverride.value ?? undefined,
+    showSymbol: showSymbol.value,
   });
 });
 
@@ -240,6 +260,10 @@ const hasData = computed(() => props.result.rows.length > 0 && numericColumnInde
           <div class="flex items-center justify-between gap-3">
             <span class="text-xs text-muted-foreground">{{ t("chart.smooth") }}</span>
             <Switch v-model="smoothValue" data-testid="query-chart-smooth" />
+          </div>
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-xs text-muted-foreground">{{ t("chart.showSymbol") }}</span>
+            <Switch v-model="showSymbol" data-testid="query-chart-show-symbol" />
           </div>
           <div class="flex items-center justify-between gap-3">
             <span class="text-xs text-muted-foreground">{{ t("chart.showLabels") }}</span>
